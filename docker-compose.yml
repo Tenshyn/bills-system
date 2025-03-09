@@ -1,0 +1,29 @@
+version: '3.1'
+
+services:
+  postgres:
+    image: postgres:12-alpine
+    container_name: postgres_container
+    environment:
+      POSTGRES_USER: user_admin
+      POSTGRES_PASSWORD: admin123@
+      POSTGRES_DB: bills_system
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: bills_app
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres_container:5432/bills_system
+      SPRING_DATASOURCE_USERNAME: user_admin
+      SPRING_DATASOURCE_PASSWORD: admin123@
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
