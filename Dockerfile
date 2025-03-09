@@ -1,29 +1,30 @@
-FROM eclipse-temurin:17-jdk-alpine as build
-WORKDIR /workspace/app
+# Etapa de Build
+FROM maven:3.9.6-eclipse-temurin-17-alpine AS build
 
-# Copy maven files first for better layer caching
-COPY mvnw .
-COPY .mvn .mvn
+# Define o diretório de trabalho
+WORKDIR /app
+
+# Copia o pom.xml e baixa dependências para otimizar cache
 COPY pom.xml .
-COPY src src
+RUN mvn dependency:go-offline
 
-# Make the mvnw script executable
-RUN chmod +x ./mvnw
+# Copia o código-fonte
+COPY src ./src
 
-# Build a release JAR
-RUN ./mvnw package -DskipTests
+# Compila o projeto sem rodar testes
+RUN mvn package -DskipTests
 
-# Extract the layers to optimize Docker caching
-RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
-
-# Production stage
+# Etapa de Produção (imagem menor)
 FROM eclipse-temurin:17-jre-alpine
-VOLUME /tmp
 
-# Copy the exploded layers for caching to work effectively
-ARG DEPENDENCY=/workspace/app/target/dependency
-COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
-COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
-COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
+# Define o diretório de trabalho
+WORKDIR /app
 
-ENTRYPOINT ["java", "-cp", "app:app/lib/*", "tenshy.bills.BillsApplication"]
+# Copia apenas o JAR gerado da etapa de build
+COPY --from=build /app/target/*.jar app.jar
+
+# Expõe a porta do Spring Boot
+EXPOSE 8080
+
+# Define o comando de execução
+CMD ["java", "-jar", "app.jar"]
