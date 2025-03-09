@@ -29,7 +29,7 @@ Testes: Os testes unitários foram implementados utilizando JUnit e Mockito.
 # Instruções para Construir e Rodar a Aplicação
 
 Instruções para Construir e Rodar a Aplicação
-## Pré-requisitos
+### Pré-requisitos
 Docker
 Docker Compose
 
@@ -41,11 +41,11 @@ git clone https://github.com/Tenshyn/bills-system.git
 
 cd bills-system
 
-##Construa e inicie os contêineres:
+### Construa e inicie os contêineres:
 
 docker-compose up --build
 
-##Verificação das Imagens Geradas
+### Verificação das Imagens Geradas
 
 Para verificar se as imagens foram geradas corretamente, você pode usar o seguinte comando:
 docker images
@@ -56,7 +56,7 @@ docker images
 Aplicação: http://localhost:8080/api
 PostgreSQL: localhost:5432
 
-##Acesso ao Swagger
+## Acesso ao Swagger
 
 Após iniciar os contêineres, você pode acessar a documentação da API através do Swagger:
 http://localhost:8080/api/swagger-ui/index.html
