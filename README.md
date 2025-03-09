@@ -36,8 +36,11 @@ Docker Compose
 Como Construir e Rodar
 
 Clone o repositório:
+
 git clone https://github.com/Tenshyn/bills-system.git
+
 cd bills-system
+
 ###Construa e inicie os contêineres:
 docker-compose up --build
 ###Verificação das Imagens Geradas
