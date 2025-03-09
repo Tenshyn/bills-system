@@ -41,9 +41,12 @@ git clone https://github.com/Tenshyn/bills-system.git
 
 cd bills-system
 
-###Construa e inicie os contêineres:
+##Construa e inicie os contêineres:
+
 docker-compose up --build
-###Verificação das Imagens Geradas
+
+##Verificação das Imagens Geradas
+
 Para verificar se as imagens foram geradas corretamente, você pode usar o seguinte comando:
 docker images
 
