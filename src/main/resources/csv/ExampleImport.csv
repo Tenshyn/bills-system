@@ -1,0 +1,6 @@
+dueDate,paymentDate,amount,description,status
+10/01/2025,04/01/2025,100.0,monthly tuition 1,Paid
+10/02/2025,15/02/2025,115,monthly tuition 2,Late_Payment
+10/03/2025,,100,monthly tuition 3,Pending
+10/03/2025,,50.0,gym mermbership,Pending
+10/04/2025,,100,monthly tuition 4,Pending
