@@ -51,7 +51,7 @@ Para verificar se as imagens foram geradas corretamente, você pode usar o segui
 docker images
 
 
-##Serviços e Portas
+## Serviços e Portas
 
 Aplicação: http://localhost:8080/api
 PostgreSQL: localhost:5432
@@ -62,3 +62,7 @@ Após iniciar os contêineres, você pode acessar a documentação da API atrav�
 http://localhost:8080/api/swagger-ui/index.html
 
 Todos os endpoints estão documentados no swagger, incluindo os payloads e respostas.
+
+## Importação por arquivo CSV
+
+É possível importar contas para o sistema utilizando um arquivo CSV, as especificações do arquivo estão no swagger e também há um arquivo de exemplo que pode ser utilizado para testes dentro de resources
